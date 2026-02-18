@@ -1,4 +1,5 @@
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import { Avatar } from 'heroui-native/avatar';
 import { Button } from 'heroui-native/button';
@@ -150,7 +151,22 @@ export default function SettingsScreen() {
                     <Button.Label className="text-white font-bold">Log Out</Button.Label>
                 </Button>
 
-                <View className="items-center py-4">
+                <Button
+                    variant="ghost"
+                    className="w-full "
+                    onPress={async () => {
+                        try {
+                            await AsyncStorage.removeItem('hasSeenOnboarding');
+                            router.replace('/onboarding');
+                        } catch (error) {
+                            console.error('Error resetting onboarding:', error);
+                        }
+                    }}
+                >
+                    <Button.Label className="text-red-500 font-medium">Reset Onboarding</Button.Label>
+                </Button>
+
+                <View className="items-center pb-6">
                     <ThemedText className="text-gray-400 text-xs">Version 1.0.0</ThemedText>
                 </View>
 
