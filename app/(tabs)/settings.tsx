@@ -1,4 +1,5 @@
 
+import { useRouter } from 'expo-router';
 import { Avatar } from 'heroui-native/avatar';
 import { Button } from 'heroui-native/button';
 import { Card } from 'heroui-native/card';
@@ -6,7 +7,7 @@ import { PressableFeedback } from 'heroui-native/pressable-feedback';
 import { Separator } from 'heroui-native/separator';
 import { Switch } from 'heroui-native/switch';
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { Linking, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Uniwind, useUniwind } from 'uniwind';
 
@@ -16,6 +17,7 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 
 export default function SettingsScreen() {
     const insets = useSafeAreaInsets();
+    const router = useRouter();
     const { theme } = useUniwind();
     const [isDarkMode, setIsDarkMode] = React.useState(theme === 'dark');
     const [notificationsEnabled, setNotificationsEnabled] = React.useState(true);
@@ -83,43 +85,24 @@ export default function SettingsScreen() {
                     </Card>
                 </View>
 
-                {/* Account */}
+                {/* Support & Feedback */}
                 <View className="gap-3">
-                    <ThemedText className="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase ml-2">Account</ThemedText>
+                    <ThemedText className="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase ml-2">Support & Feedback</ThemedText>
                     <Card className="bg-gray-50 dark:bg-zinc-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-zinc-800 p-0">
-                        <PressableFeedback onPress={() => { }}>
+                        <PressableFeedback onPress={() => Linking.openURL('mailto:theneerajsec@gmail.com?subject=App Feedback')}>
                             <View className="flex-row items-center justify-between p-4 overflow-hidden relative">
                                 <PressableFeedback.Ripple />
                                 <View className="flex-row items-center gap-3">
-                                    <View className="w-8 h-8 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/30">
-                                        <IconSymbol name="person.circle" size={18} color="#6366F1" />
+                                    <View className="w-8 h-8 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
+                                        <IconSymbol name="envelope.fill" size={18} color="#3B82F6" />
                                     </View>
-                                    <ThemedText className="font-medium text-base">Personal Information</ThemedText>
+                                    <ThemedText className="font-medium text-base">Send Feedback</ThemedText>
                                 </View>
                                 <IconSymbol name="chevron.right" size={20} color={iconColor} />
                             </View>
                         </PressableFeedback>
                         <Separator className="opacity-50" />
-                        <PressableFeedback onPress={() => { }}>
-                            <View className="flex-row items-center justify-between p-4 overflow-hidden relative">
-                                <PressableFeedback.Ripple />
-                                <View className="flex-row items-center gap-3">
-                                    <View className="w-8 h-8 items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/30">
-                                        <IconSymbol name="lock.fill" size={18} color="#F97316" />
-                                    </View>
-                                    <ThemedText className="font-medium text-base">Security</ThemedText>
-                                </View>
-                                <IconSymbol name="chevron.right" size={20} color={iconColor} />
-                            </View>
-                        </PressableFeedback>
-                    </Card>
-                </View>
-
-                {/* Support */}
-                <View className="gap-3">
-                    <ThemedText className="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase ml-2">Support</ThemedText>
-                    <Card className="bg-gray-50 dark:bg-zinc-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-zinc-800 p-0">
-                        <PressableFeedback onPress={() => { }}>
+                        <PressableFeedback onPress={() => Linking.openURL('mailto:theneerajsec@gmail.com')}>
                             <View className="flex-row items-center justify-between p-4 overflow-hidden relative">
                                 <PressableFeedback.Ripple />
                                 <View className="flex-row items-center gap-3">
@@ -132,27 +115,27 @@ export default function SettingsScreen() {
                             </View>
                         </PressableFeedback>
                         <Separator className="opacity-50" />
-                        <PressableFeedback onPress={() => { }}>
+                        <PressableFeedback onPress={() => router.push('/privacy-policy')}>
                             <View className="flex-row items-center justify-between p-4 overflow-hidden relative">
                                 <PressableFeedback.Ripple />
                                 <View className="flex-row items-center gap-3">
                                     <View className="w-8 h-8 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30">
                                         <IconSymbol name="doc.text" size={18} color="#A855F7" />
                                     </View>
-                                    <ThemedText className="font-medium text-base">Terms & Policies</ThemedText>
+                                    <ThemedText className="font-medium text-base">Privacy Policy</ThemedText>
                                 </View>
                                 <IconSymbol name="chevron.right" size={20} color={iconColor} />
                             </View>
                         </PressableFeedback>
                         <Separator className="opacity-50" />
-                        <PressableFeedback onPress={() => { }}>
+                        <PressableFeedback onPress={() => router.push('/about')}>
                             <View className="flex-row items-center justify-between p-4 overflow-hidden relative">
                                 <PressableFeedback.Ripple />
                                 <View className="flex-row items-center gap-3">
                                     <View className="w-8 h-8 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-900/30">
                                         <IconSymbol name="info.circle" size={18} color="#14B8A6" />
                                     </View>
-                                    <ThemedText className="font-medium text-base">About</ThemedText>
+                                    <ThemedText className="font-medium text-base">About Us</ThemedText>
                                 </View>
                                 <IconSymbol name="chevron.right" size={20} color={iconColor} />
                             </View>

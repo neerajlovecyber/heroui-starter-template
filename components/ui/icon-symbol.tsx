@@ -27,6 +27,13 @@ const MAPPING = {
   'lock.fill': 'lock',
   'arrow.right.circle.fill': 'logout',
   'info.circle': 'info',
+  'envelope.fill': 'mail',
+  'sparkles': 'auto-awesome',
+  'ant.fill': 'bug-report',
+  'hand.raised.fill': 'privacy-tip',
+  'info.circle.fill': 'info',
+  'doc.text.fill': 'description',
+  'questionmark.circle.fill': 'help',
 } as IconMapping;
 
 /**
