@@ -46,7 +46,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
                                         color: isFocused ? 'currentColor' : '#a1a1aa', // Use style color or generic gray
                                         size: 24,
                                     })}
-                                    <Tabs.Label className="text-xs">{label as string}</Tabs.Label>
+
                                 </View>
                             </Tabs.Trigger>
                         );

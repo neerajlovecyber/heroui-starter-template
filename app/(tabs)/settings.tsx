@@ -161,10 +161,10 @@ export default function SettingsScreen() {
                 </View>
 
                 <Button
-                    className="w-full bg-red-500 dark:bg-red-600 rounded-2xl py-3.5 mt-6 shadow-sm active:opacity-90"
+                    className="w-full bg-red-500 dark:bg-red-600 rounded-2xl mt-6 shadow-sm active:opacity-90"
                     onPress={() => { }}
                 >
-                    <Button.Label className="text-white font-bold text-lg">Log Out</Button.Label>
+                    <Button.Label className="text-white font-bold">Log Out</Button.Label>
                 </Button>
 
                 <View className="items-center py-4">
