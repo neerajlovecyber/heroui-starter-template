@@ -44,3 +44,5 @@ app-example
 
 # Uniwind generated types
 uniwind-types.d.ts
+# heroui-agents-md
+.heroui-docs/

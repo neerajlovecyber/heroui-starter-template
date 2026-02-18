@@ -2,6 +2,7 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
+import { TabBar } from '@/components/navigation/TabBar';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
@@ -11,10 +12,11 @@ export default function TabLayout() {
 
   return (
     <Tabs
+      tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
+        tabBarButton: HapticTab, // Note: HapticTab might conflict with our custom TabBar triggers if wrapped incorrectly, but Expo Tabs passes it to default tab bar. Since we replace tabBar, this might be ignored or passed to our props.
       }}>
       <Tabs.Screen
         name="index"
@@ -24,10 +26,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="settings"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="gear" color={color} />,
         }}
       />
     </Tabs>
