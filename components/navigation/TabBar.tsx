@@ -1,3 +1,4 @@
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { Tabs } from 'heroui-native/tabs';
 import { View } from 'react-native';
@@ -6,9 +7,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     const insets = useSafeAreaInsets();
     const activeRouteName = state.routes[state.index].name;
+    const colorScheme = useColorScheme();
 
     return (
-        <View style={{ bottom: insets.bottom + 10, left: 16, right: 16 }} className="absolute bg-white dark:bg-zinc-900 rounded-3xl shadow-lg border border-gray-100 dark:border-zinc-800">
+        <View style={{ bottom: insets.bottom + 10, left: 24, right: 24 }} className="absolute items-center justify-center">
             <Tabs
                 value={activeRouteName}
                 onValueChange={(value) => {
@@ -22,31 +24,23 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
                         navigation.navigate(value);
                     }
                 }}
-                className="w-full bg-transparent"
+                className="bg-white dark:bg-zinc-900 rounded-full shadow-lg border border-gray-100 dark:border-zinc-800 p-1 min-w-[200px]"
                 variant="primary"
             >
-                <Tabs.List className="w-full bg-transparent p-0">
-                    <Tabs.Indicator />
+                <Tabs.List className="flex-row items-center justify-between bg-transparent p-0 w-full h-14">
+                    <Tabs.Indicator className="bg-black dark:bg-white rounded-full translate-y-[-50%]" />
                     {state.routes.map((route, index) => {
                         const { options } = descriptors[route.key];
-                        const label =
-                            options.tabBarLabel !== undefined
-                                ? options.tabBarLabel
-                                : options.title !== undefined
-                                    ? options.title
-                                    : route.name;
-
                         const isFocused = state.index === index;
 
                         return (
-                            <Tabs.Trigger key={route.key} value={route.name} className="flex-1">
-                                <View className="items-center justify-center gap-1 py-1">
+                            <Tabs.Trigger key={route.key} value={route.name} className="flex-1 h-full items-center justify-center rounded-full">
+                                <View className="items-center justify-center w-12 h-12">
                                     {options.tabBarIcon?.({
                                         focused: isFocused,
-                                        color: isFocused ? 'currentColor' : '#a1a1aa', // Use style color or generic gray
+                                        color: isFocused ? (colorScheme === 'dark' ? 'black' : 'white') : (colorScheme === 'dark' ? '#71717a' : '#a1a1aa'), // Inverted text color for active state
                                         size: 24,
                                     })}
-
                                 </View>
                             </Tabs.Trigger>
                         );
